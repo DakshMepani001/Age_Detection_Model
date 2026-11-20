@@ -48,3 +48,65 @@ DL AGE_DETACTION/
     ├── mahant_swami.jpg
     ├── mr_beast.jpg
     └── teenager.jpg
+
+## Tech Stack
+
+* **Language:** Python 3
+* **Computer Vision & Inference:** OpenCV (`cv2`, `cv2.dnn`)
+* **Numerical & Visualization Tools:** NumPy, Matplotlib
+* **Environment:** Jupyter Notebook
+* **Pre-trained Models:**
+  * TensorFlow SSD-ResNet10 Face Detector
+  * Caffe AgeNet (Levi & Hassner, CVPR 2015)
+
+---
+
+## Setup & Installation
+
+1. **Clone the repository:**
+   ```bash
+   git clone [https://github.com/DakshMepani001/Age-Detection-OpenCV.git](https://github.com/DakshMepani001/Age-Detection-OpenCV.git)
+   cd Age-Detection-OpenCV
+   ```
+
+2. **Install required dependencies:**
+   ```bash
+   pip install opencv-python numpy matplotlib jupyter
+   ```
+
+3. **Verify model files:**
+   Ensure all four model files (`age_deploy.prototxt`, `age_net.caffemodel`, `opencv_face_detector.pbtxt`, `opencv_face_detector_uint8.pb`) are present inside the `model_dir/` directory.
+
+---
+
+## Usage
+
+1. **Launch Jupyter Notebook:**
+   ```bash
+   jupyter notebook
+   ```
+
+2. Open `Age_Detection_using_Deep_Learning_in_OpenCV.ipynb`.
+
+3. Update `image_path` to point to any image inside `sample_photos/` (or your own custom image):
+   ```python
+   image_path = r"sample_photos/kid_girl.jpg"
+   process_image(image_path)
+   ```
+
+4. Run all cells to view the detected bounding boxes and predicted age brackets rendered inline.
+
+---
+
+## Known Limitations
+
+* **Dataset Bias:** Because the Adience dataset is heavily skewed toward young adults, the model can occasionally bias uncertain middle-aged predictions toward the `(25-32)` bracket.
+* **Resolution Constraints:** Input face crops are resized to `227 x 227`, which can smooth out fine skin textures and subtle age markers under soft or bright lighting.
+* **Fixed Output Classes:** The 8 age ranges are hardcoded into the final Softmax layer of `age_net.caffemodel` and cannot be modified without retraining the network.
+
+---
+
+## References
+
+* Gil Levi and Tal Hassner, *"Age and Gender Classification using Convolutional Neural Networks"*, IEEE Workshop on Analysis and Modeling of Faces and Gestures (AMFG), CVPR 2015.
+* OpenCV Deep Neural Network (`cv2.dnn`) Module Documentation.
